@@ -12,8 +12,8 @@
                 </div>
                 {!! Form::open(['route' => 'employees.store']) !!}
                 <div class="card-body">
-                    {!! FormField::text('name', ['required' => true, 'label' => trans('employee.name')]) !!}
-                    {!! FormField::text('surname', ['required' => true, 'label' => trans('employee.surname')]) !!}
+                    {!! FormField::text('name', ['label' => trans('employee.name')]) !!}
+                    {!! FormField::text('surname', ['label' => trans('employee.surname')]) !!}
                     {!! FormField::select('company_id', $companiesArray, ['label' => trans('employee.company'),
                     'placeholder' => trans('company.select')]) !!}
                     {!! FormField::email('email', ['label' => trans('employee.email')]) !!}

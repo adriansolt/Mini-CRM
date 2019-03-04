@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Company;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyRequest;
+use Illuminate\Support\Facades\Mail;
 
 class CompanyController extends Controller
 {
@@ -39,7 +40,12 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
         $newCompany = $request->validated();
+        Mail::send('emails.companies.create', $newCompany, function ($message) {
 
+            $message->from(auth()->user()->email, auth()->user()->name);
+
+            $message->to('asdasd@sasd.com')->subject(trans('company.email_subject_creation'));
+        });
         $company = Company::create($newCompany);
 
         return redirect()->route('companies.show', $company);

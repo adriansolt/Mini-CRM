@@ -12,8 +12,8 @@
                 </div>
                 {{ Form::model($company, ['route' => ['companies.update', $company],'method' => 'patch']) }}
                 <div class="card-body">
-                    {!! FormField::text('name', ['required' => true, 'label' => trans('company.name')]) !!}
-                    {!! FormField::email('email', ['required' => true, 'label' => trans('company.email')]) !!}
+                    {!! FormField::text('name', ['label' => trans('company.name')]) !!}
+                    {!! FormField::email('email', ['label' => trans('company.email')]) !!}
                     {!! FormField::text('website', ['label' => trans('company.website')]) !!}
                     {!! FormField::textarea('address', ['label' => trans('company.address')]) !!}
                 </div>
