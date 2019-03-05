@@ -10,7 +10,7 @@
                 <div class="card-header">
                     {{ trans('company.create') }}
                 </div>
-                {!! Form::open(['route' => 'companies.store']) !!}
+                {!! Form::open(['route' => 'companies.store', 'files' => true]) !!}
                 <div class="card-body">
                     {!! FormField::text('name', ['label' => trans('company.name')]) !!}
                     {!! FormField::email('email', ['label' => trans('company.email')]) !!}

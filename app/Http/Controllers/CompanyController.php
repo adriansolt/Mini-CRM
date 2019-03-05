@@ -40,13 +40,21 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
         $newCompany = $request->validated();
+
+        if($request->hasFile('logo')) {
+            $logo = $request->file('logo');
+            $name = time().'.'.$logo->getClientOriginalExtension();
+            $dest = public_path('/images');
+            $logo->move($dest, $name);
+            $newCompany['logo'] = $name;
+        }
+
         Mail::send('emails.companies.create', $newCompany, function ($message) use ($newCompany) {
             $message->from(auth()->user()->email, auth()->user()->name);
 
             $message->to($newCompany['email'])->subject(trans('company.email_subject_creation'));
         });
         $company = Company::create($newCompany);
-
         return redirect()->route('companies.show', $company);
     }
 
@@ -82,8 +90,20 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, Company $company)
     {
-        $company->update($request->validated());
+        $companyUpdated = $request->validated();
+        if($request->hasFile('logo')) {
+            $file = public_path('images/'.$company->logo);
+            if($company->logo && is_file($file)) {
+                unset($file);
+            }
+            $logo = $request->file('logo');
+            $name = time().'.'.$logo->getClientOriginalExtension();
+            $dest = public_path('/images');
+            $logo->move($dest, $name);
+            $companyUpdated['logo'] = $name;
+        }
 
+        $company->update($companyUpdated);
         return redirect()->route('companies.show', $company);
     }
 

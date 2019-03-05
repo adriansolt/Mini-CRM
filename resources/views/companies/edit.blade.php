@@ -10,12 +10,13 @@
                 <div class="card-header">
                     {{ trans('company.edit') }}
                 </div>
-                {{ Form::model($company, ['route' => ['companies.update', $company],'method' => 'patch']) }}
+                {{ Form::model($company, ['route' => ['companies.update', $company],'method' => 'patch', 'files' => true]) }}
                 <div class="card-body">
                     {!! FormField::text('name', ['label' => trans('company.name')]) !!}
                     {!! FormField::email('email', ['label' => trans('company.email')]) !!}
                     {!! FormField::text('website', ['label' => trans('company.website')]) !!}
                     {!! FormField::textarea('address', ['label' => trans('company.address')]) !!}
+                    {!! FormField::file('logo', ['label' => trans('company.upload_logo')]) !!}
                 </div>
                 <div class="card-footer">
                     {{ Form::submit(trans('company.update'), ['class' => 'btn btn-warning']) }}

@@ -11,26 +11,29 @@
                     {{ trans('company.detail') }}
                 </div>
                 <div class="card-body pb-2">
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td>{{ trans('company.name') }}</td>
-                                    <td>{{ $company->name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ trans('company.email') }}</td>
-                                    <td>{{ $company->email }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ trans('company.website') }}</td>
-                                    <td>{{ $company->website }}</td>
-                                </tr>
-                                <tr>
-                                    <td>{{ trans('company.address') }}</td>
-                                    <td>{{ $company->address }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    @if ($company->logo && is_file(public_path('images/'.$company->logo)))
+                        {{ Html::image('images/'.$company->logo, 'logo', ['style' => 'width:100%']) }}
+                    @endif
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>{{ trans('company.name') }}</td>
+                                <td>{{ $company->name }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ trans('company.email') }}</td>
+                                <td>{{ $company->email }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ trans('company.website') }}</td>
+                                <td>{{ $company->website }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ trans('company.address') }}</td>
+                                <td>{{ $company->address }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="card-footer">
                     {{ link_to_route('companies.edit', trans('company.edit'), [$company], ['class' => 'btn
