@@ -40,11 +40,10 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
         $newCompany = $request->validated();
-        Mail::send('emails.companies.create', $newCompany, function ($message) {
-
+        Mail::send('emails.companies.create', $newCompany, function ($message) use ($newCompany) {
             $message->from(auth()->user()->email, auth()->user()->name);
 
-            $message->to('asdasd@sasd.com')->subject(trans('company.email_subject_creation'));
+            $message->to($newCompany['email'])->subject(trans('company.email_subject_creation'));
         });
         $company = Company::create($newCompany);
 
