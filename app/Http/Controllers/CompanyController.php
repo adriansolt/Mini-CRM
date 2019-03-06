@@ -6,6 +6,7 @@ use App\Company;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyRequest;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class CompanyController extends Controller
 {
@@ -94,7 +95,7 @@ class CompanyController extends Controller
         if($request->hasFile('logo')) {
             $file = public_path('images/'.$company->logo);
             if($company->logo && is_file($file)) {
-                unset($file);
+                Storage::delete($file);
             }
             $logo = $request->file('logo');
             $name = time().'.'.$logo->getClientOriginalExtension();
