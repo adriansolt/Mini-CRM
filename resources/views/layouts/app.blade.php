@@ -64,7 +64,12 @@
                                 </div>
                             </li>
                         @endguest
-
+                        <li>
+                            {{ link_to('/language/en', 'EN', ['class' => 'nav-link' ])}}
+                        </li>
+                        <li>
+                            {{ link_to('/language/es', 'ES', ['class' => 'nav-link' ])}}
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <p>You are logged in!</p>
+                    <p>{{ trans('app.logged') }}</p>
                     <ul>
                         <li>{{ link_to_route('companies.index', trans('company.list')) }}</li>
                         <li>{{ link_to_route('employees.index', trans('employee.list')) }}</li>

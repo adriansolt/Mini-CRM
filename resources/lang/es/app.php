@@ -7,6 +7,7 @@ return [
     'delete'                => 'Borrar',
     'back'                  => 'Volver',
     'action'                => 'Accion',
+    'logged'                => '¡Estás logeado!',
 
     'name' => 'Nombre',
 ];
